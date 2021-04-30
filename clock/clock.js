@@ -17,6 +17,6 @@ setInterval(() => {
     // console.log("Time is " + hours + ":" + minutes + ":" + seconds);
     // console.log(secondsDegrees);
     // console.log(minutesDegrees);
-    // console.log(hoursDegrees);
+    // console.log(hoursDegrees); 
 
 }, 1000);
