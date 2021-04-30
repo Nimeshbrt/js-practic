@@ -7,13 +7,11 @@ function changeIt(e) {
 
     document.documentElement.style.setProperty(`--${this.name}`, this.value + unit);
     // console.log(this.name);
-
 }
 
 function changeimg() {
     this.src = "http://unsplash.it/" + Math.floor((Math.random() * 80) + 400) + "?random=" + new Date().getTime();
     // img.classList.toggle("d-none");
-
 }
 
 input.forEach(input => input.addEventListener('change', changeIt));
