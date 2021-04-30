@@ -1,0 +1,54 @@
+:root {
+    --blur: 10px;
+    --blue: #1e90ff;
+    --p: 10px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --white: #ffffff;
+    --color: #000;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: var(--white);
+    min-height: 100vh;
+    background: var(--blue);
+}
+
+#container {
+    display: flex;
+    flex-flow: row wrap;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+    /* flex-direction: column; */
+}
+
+.controls {
+    flex-basis: 70%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+img {
+    background: var(--color);
+    padding: var(--p);
+    filter: blur(var(--blur));
+    display: block;
+    /* flex: 1; */
+    margin-top: 30px;
+}
+
+.d-none {
+    display: none;
+}
