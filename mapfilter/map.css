@@ -1,0 +1,58 @@
+:root {
+    --blur: 10px;
+    --blue: #1e90ff;
+    --p: 10px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0;
+    gap: 15px;
+    min-height: 300px;
+}
+
+#cards {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.card {
+    flex-basis: 250px !important;
+    transition: flex .2s ease-in 0s;
+    flex: 1;
+    cursor: pointer;
+}
+
+
+.card:hover {
+    flex: 3;
+    transition: flex .2s ease-in 0s;
+}
+
+.card img {
+    width: 100%;
+    transition: width .2s ease-in 0s;
+        /* height: calc(100% - 30px); */
+    object-fit: cover;
+    height: 300px;
+
+}
+
+#gmap {
+  flex-basis: 100%;
+}
+
+#filter{
+    flex-basis: 20%;
+}

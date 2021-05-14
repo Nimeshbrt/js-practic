@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="map.css">
+    <script defer src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script defer src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+    <script defer src="map.js" ></script>
+    <title>SearchHomez Map Filter</title>
+</head>
+
+<body>
+    <!-- Map and filter Section -->
+    <section class="top-section">
+        <div id="filter">
+            <h2>Filter</h2>
+            <ul>
+                <li class="list1" data-id="1">list1</li>
+                <li class="list2" data-id="2">list2</li>
+                <li class="list3" data-id="3">list3</li>
+                <li class="list4" data-id="4">list4</li>
+                <li class="list5" data-id="5">list5</li>
+            </ul>
+        </div>
+        <div id="gmap">
+        </div>
+    </section>
+
+    <!-- Cards and Pagination -->
+    <section id="cards">
+        <div class="card" data-lat="26.57878" data-lng="87.520" data-modifier="1">
+            <img src="http://unsplash.it/300/300?random&gravity=center" alt="">
+            <h3>card1</h3>
+        </div>
+        <div class="card" data-lat="27.57878" data-lng="88.524" data-modifier="2">
+            <img src="http://unsplash.it/300/300?random&gravity=center" alt="">
+            <h3>card2</h3>
+        </div>
+        <div class="card" data-lat="27.57878" data-lng="88.530" data-modifier="1">
+            <img src="http://unsplash.it/300/300?random&gravity=center" alt="">
+            <h3>card3</h3>
+        </div>
+        <div class="card" data-lat="27.57878" data-lng="88.531" data-modifier="2">
+            <img src="http://unsplash.it/300/300?random&gravity=center" alt="">
+            <h3>card4</h3>
+        </div>
+        <div class="card" data-lat="25.57878" data-lng="86.585" data-modifier="1">
+            <img src="http://unsplash.it/300/300?random&gravity=center" alt="">
+            <h3>card5</h3>
+        </div>
+        <div class="card" data-lat="25.57878" data-lng="86.580" data-modifier="3">
+            <img src="http://unsplash.it/300/300?random&gravity=center" alt="">
+            <h3>card6</h3>
+        </div>
+        <div class="card" data-lat="25.57878" data-lng="86.589" data-modifier="3">
+            <img src="http://unsplash.it/300/300?random&gravity=center" alt="">
+            <h3>card7</h3>
+        </div>
+        <div class="card" data-lat="25.57878" data-lng="86.584" data-modifier="4">
+            <img src="http://unsplash.it/300/300?random&gravity=center" alt="">
+            <h3>card8</h3>
+        </div>
+        <div class="card" data-lat="26.57878" data-lng="87.544" data-modifier="5">
+            <img src="http://unsplash.it/300/300?random&gravity=center" alt="">
+            <h3>card9</h3>
+        </div>
+        <div class="card" data-lat="26.57878" data-lng="87.5" data-modifier="5">
+            <img src="http://unsplash.it/300/300?random&gravity=center" alt="">
+            <h3>card10</h3>
+        </div>
+    </section>
+    <script defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8L34Odx12DaTbTA_GySL1LR3EOko5yqg&callback=initMap"></script>
+
+</body>
+
+</html>
