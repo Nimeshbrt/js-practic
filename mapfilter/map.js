@@ -3,17 +3,16 @@ let map;
 /* Locations markers on the map. Format : { lat : number, lng : number} */
 const locations = [];
 
-let cards = document.querySelectorAll('.card');
+let cards = document.querySelectorAll(".card");
 cards.forEach((val, index) => {
-
     const lat = val.dataset.lat;
     const lng = val.dataset.lng;
     const obj = {
-        "lat": Number(lat),
-        "lng": Number(lng)
+        lat: Number(lat),
+        lng: Number(lng),
     };
+    // console.log(val.dataset);
     locations.push(obj);
-
 });
 
 function initMap() {
@@ -66,3 +65,43 @@ function initMap() {
     });
 }
 
+const list = document.querySelectorAll("ul li.list");
+
+
+list.forEach((tal) => {
+    tal.addEventListener("click", (val) => {
+        // window.confirm(val.target.dataset.id)
+        // console.clear();
+        // console.log(val.target);
+        // console.log(val.target.dataset.id);
+        cards.forEach(
+            (cardall) => {
+                cardall.classList.remove("d-none");
+            }
+        );
+        const dataId = Number(val.target.dataset.id);
+        // console.log(cards);
+        const newCards = Array.from(cards);
+        // const removeCard = document.querySelectorAll(`[data-modifier="${dataId}"]`);
+
+        const filtered = newCards.filter((card) => {
+            return Number(card.dataset.modifier) !== dataId;
+        });
+
+        // console.log (filtered);
+
+        filtered.forEach((card) => {
+            card.classList.add("d-none");
+        });
+    });
+});
+
+const reset = document.querySelector("[data-id='reset']");
+
+reset.addEventListener("click", () => {
+    cards.forEach(
+        (cardall) => {
+            cardall.classList.remove("d-none");
+        }
+    );
+})

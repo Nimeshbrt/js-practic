@@ -56,3 +56,12 @@ body {
 #filter{
     flex-basis: 20%;
 }
+
+li{
+    cursor: pointer;
+    padding: 5px 0;
+}
+
+.d-none{
+    display: none;
+}
