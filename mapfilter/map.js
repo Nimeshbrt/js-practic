@@ -66,21 +66,62 @@ function initMap() {
 }
 
 const list = document.querySelectorAll("ul li.list");
+const loading4 = document.querySelector('#loader'); 
+
+
 
 const aR = (id) => {
-    const allCards = document.querySelector("#cards");
+    const allCards = document.querySelector("#cardsall");
     const xhr = new XMLHttpRequest();
 
-    if (id) {
-        xhr.open("GET", `ajax${id}.html`, true);
+    function handleEvent(e) {
+        allCards.innerHTML = "";
+        console.log(`Loading....`);
+        loading4.classList.add('classic-4');
+    }
+
+    function handleEvent1(e) {
+        console.log(`Loaded successfully`);
+        loading4.classList.remove('classic-4');
+    }
+
+    function addListeners(xhr) {
+        xhr.addEventListener('progress', handleEvent);
+        xhr.addEventListener('load', handleEvent1);
+    }
+
+    xhr.responseType = "document";
+
+    if (!id) {
+        xhr.open("GET", `ajax.html`, true);
+        xhr.addEventListener("load", function () {
+            const allHTML = this.responseXML;
+            console.log(allHTML.querySelectorAll(`[data-modifier]`));
+            const cardsall = allHTML.querySelectorAll(`[data-modifier]`);
+            cardsall.forEach(
+                (val1) => {
+                    allCards.innerHTML += val1.outerHTML;
+                }
+            );
+            // allCards.innerHTML = allHTML.querySelectorAll(`[data-modifier="${id}"]`);
+        });
     }else{
         xhr.open("GET", `ajax.html`, true);
+        xhr.addEventListener("load", function () {
+            const allHTML = this.responseXML;
+            console.log(allHTML.querySelectorAll(`[data-modifier="${id}"]`));
+            const cardsall = allHTML.querySelectorAll(`[data-modifier="${id}"]`);
+            cardsall.forEach(
+                (val1) => {
+                    allCards.innerHTML += val1.outerHTML;
+                }
+            );
+            // allCards.innerHTML = allHTML.querySelectorAll(`[data-modifier="${id}"]`);
+        });
     }
-    xhr.addEventListener("load", function () {
-        const allHTML = this.responseText;
-        // allHTML.querySelectorAll(`[data-modifier="${dataId}"]`);
-        allCards.innerHTML = this.responseText;
-    });
+    
+
+    addListeners(xhr);
 
     xhr.send();
 };
