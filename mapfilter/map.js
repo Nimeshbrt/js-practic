@@ -67,41 +67,58 @@ function initMap() {
 
 const list = document.querySelectorAll("ul li.list");
 
+const aR = (id) => {
+    const allCards = document.querySelector("#cards");
+    const xhr = new XMLHttpRequest();
+
+    if (id) {
+        xhr.open("GET", `ajax${id}.html`, true);
+    }else{
+        xhr.open("GET", `ajax.html`, true);
+    }
+    xhr.addEventListener("load", function () {
+        const allHTML = this.responseText;
+        // allHTML.querySelectorAll(`[data-modifier="${dataId}"]`);
+        allCards.innerHTML = this.responseText;
+    });
+
+    xhr.send();
+};
 
 list.forEach((tal) => {
     tal.addEventListener("click", (val) => {
-        // window.confirm(val.target.dataset.id)
-        // console.clear();
-        // console.log(val.target);
-        // console.log(val.target.dataset.id);
-        cards.forEach(
-            (cardall) => {
-                cardall.classList.remove("d-none");
-            }
-        );
         const dataId = Number(val.target.dataset.id);
-        // console.log(cards);
-        const newCards = Array.from(cards);
+
+        aR(dataId);
+
+        // cards.forEach(
+        //     (cardall) => {
+        //         cardall.classList.remove("d-none");
+        //     }
+        // );
+        // const dataId = Number(val.target.dataset.id);
+
+        // const newCards = Array.from(cards);
         // const removeCard = document.querySelectorAll(`[data-modifier="${dataId}"]`);
 
-        const filtered = newCards.filter((card) => {
-            return Number(card.dataset.modifier) !== dataId;
-        });
+        // const filtered = newCards.filter((card) => {
+        //     return Number(card.dataset.modifier) !== dataId;
+        // });
 
-        // console.log (filtered);
-
-        filtered.forEach((card) => {
-            card.classList.add("d-none");
-        });
+        // filtered.forEach((card) => {
+        //     card.classList.add("d-none");
+        // });
     });
 });
 
 const reset = document.querySelector("[data-id='reset']");
 
 reset.addEventListener("click", () => {
-    cards.forEach(
-        (cardall) => {
-            cardall.classList.remove("d-none");
-        }
-    );
-})
+    // cards.forEach(
+    //     (cardall) => {
+    //         cardall.classList.remove("d-none");
+    //     }
+    // );
+
+    aR();
+});
