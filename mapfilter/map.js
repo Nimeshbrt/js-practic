@@ -1,4 +1,5 @@
 let map;
+let markerClusterer = null;
 
 /* Locations markers on the map. Format : { lat : number, lng : number} */
 const locations = [];
@@ -26,9 +27,14 @@ function reloadMarkers() {
     markersAll.splice(0);
 
     // Call set markers to re-add markers
+    // console.log(markerClusterer);
+
+    markerClusterer.clearMarkers();
+
     setMarkers(locations);
 
-    console.log(markersAll);
+    markerClusterer = setMarkerCluster(markersAll);
+
 }
 
 // Loop for each marker in locations array
@@ -58,7 +64,7 @@ const setMarkers = (markers) => {
 
 // Add a marker clusterer image to manage the markers.
 const setMarkerCluster = (markers) => {
-    new MarkerClusterer(map, markers, {
+    return new MarkerClusterer(map, markers, {
         imagePath:
             "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
     });
@@ -73,7 +79,7 @@ function initMap() {
     // Initate first marker on map with zoom
     map = new google.maps.Map(document.getElementById("gmap"), {
         center: brt,
-        zoom: 4,
+        zoom: 7,
     });
 
     // Initiate marker cluster on map
@@ -96,10 +102,14 @@ function initMap() {
         }
     }
 
-    markersAll.splice(0);
+    // markersAll.splice(0);
+
     setMarkers(locations);
 
-    setMarkerCluster(markersAll);
+    markerClusterer = setMarkerCluster(markersAll);
+
+    // console.log(markerClusterer);
+
 }
 
 const list = document.querySelectorAll("ul li.list");
@@ -111,12 +121,12 @@ const aR = (id) => {
 
     function handleEvent(e) {
         allCards.innerHTML = "";
-        console.log(`Loading....`);
+        // console.log(`Loading....`);
         loading4.classList.add("classic-4");
     }
 
     function handleEvent1(e) {
-        console.log(`Loaded successfully`);
+        // console.log(`Loaded successfully`);
         loading4.classList.remove("classic-4");
     }
 
@@ -131,7 +141,7 @@ const aR = (id) => {
         xhr.open("GET", `ajax.html`, true);
         xhr.addEventListener("load", function () {
             const allHTML = this.responseXML;
-            console.log(allHTML.querySelectorAll(`[data-modifier]`));
+            // console.log(allHTML.querySelectorAll(`[data-modifier]`));
             const cardsall = allHTML.querySelectorAll(`[data-modifier]`);
             cardsall.forEach((val1) => {
                 allCards.innerHTML += val1.outerHTML;
@@ -148,13 +158,12 @@ const aR = (id) => {
                 locations.push(obj);
             });
             reloadMarkers();
-            initMap();
         });
     } else {
         xhr.open("GET", `ajax.html`, true);
         xhr.addEventListener("load", function () {
             const allHTML = this.responseXML;
-            console.log(allHTML.querySelectorAll(`[data-modifier="${id}"]`));
+            // console.log(allHTML.querySelectorAll(`[data-modifier="${id}"]`));
             const cardsall = allHTML.querySelectorAll(
                 `[data-modifier="${id}"]`
             );
@@ -173,7 +182,6 @@ const aR = (id) => {
                 locations.push(obj);
             });
             reloadMarkers();
-            initMap();
         });
     }
 
