@@ -1,6 +1,7 @@
 let map;
 let markerClusterer = null;
 let newMapLoc;
+let infowindow;
 
 /* Locations markers on the map pulled from div's in DOM. Format : { lat : number, lng : number} */
 const locations = [];
@@ -55,6 +56,7 @@ function reloadMarkers() {
     };
 
     map.setCenter(newMapLoc);
+    map.setZoom(2);
 
     // console.log(newMapLoc);
 
@@ -70,13 +72,52 @@ const setMarkers = (markers) => {
     markers.map((location, i) => {
         const marker = new google.maps.Marker({
             position: location,
-            animation: google.maps.Animation.DROP,
+            // animation: google.maps.Animation.DROP,
             label: `${i + 1}`,
             title: `Hello world ${i + 1}`,
         });
 
         // on click animate marker
-        marker.addListener("click", toggleBounce);
+        // marker.addListener("click", toggleBounce);
+
+        const contentString =
+            '<div id="content">' +
+            '<div id="siteNotice">' +
+            "</div>" +
+            '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
+            '<div id="bodyContent">' +
+            "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
+            "sandstone rock formation in the southern part of the " +
+            "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
+            "south west of the nearest large town, Alice Springs; 450&#160;km " +
+            "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
+            "features of the Uluru - Kata Tjuta National Park. Uluru is " +
+            "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
+            "Aboriginal people of the area. It has many springs, waterholes, " +
+            "rock caves and ancient paintings. Uluru is listed as a World " +
+            "Heritage Site.</p>" +
+            '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
+            "https://en.wikipedia.org/w/index.php?title=Uluru</a> " +
+            "(last visited June 22, 2009).</p>" +
+            "</div>" +
+            "</div>";
+
+        infowindow = new google.maps.InfoWindow({
+            content: contentString,
+        });
+
+        marker.addListener("click", () => {
+
+            if (infowindow) {
+                infowindow.close();
+            }
+            infowindow = new google.maps.InfoWindow({
+                content: contentString,
+            });
+
+            infowindow.open(map, marker);
+        });
+
 
         //function to animate marker
         function toggleBounce() {
@@ -115,7 +156,7 @@ function initMap() {
     // Initate first marker on map with zoom
     map = new google.maps.Map(document.getElementById("gmap"), {
         center: brt,
-        zoom: 5,
+        zoom: 3,
     });
 
     // Initiate marker cluster on map
@@ -125,6 +166,7 @@ function initMap() {
         animation: google.maps.Animation.DROP,
     });
 
+    
     // on click animate marker
     marker.addListener("click", toggleBounce);
 
@@ -148,11 +190,14 @@ function initMap() {
     newMapLoc = {
         lat: all1,
         lng: all2,
+        zoom: 2
     };
 
-    console.log(newMapLoc);
+    // console.log(newMapLoc);
 
     map.setCenter(newMapLoc);
+    map.setZoom(2);
+
 
     markerClusterer = setMarkerCluster(markersAll);
 
