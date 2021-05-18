@@ -1,9 +1,15 @@
 let map;
 let markerClusterer = null;
+let newMapLoc;
 
-/* Locations markers on the map. Format : { lat : number, lng : number} */
+/* Locations markers on the map pulled from div's in DOM. Format : { lat : number, lng : number} */
 const locations = [];
+
+// all markers in an array
 const markersAll = [];
+
+const avgMarkersLat = [];
+const avgMarkersLng = [];
 
 let cards = document.querySelectorAll(".card");
 cards.forEach((val, index) => {
@@ -16,6 +22,12 @@ cards.forEach((val, index) => {
     // console.log(val.dataset);
     locations.push(obj);
 });
+
+const findAvg = (...xyz) => {
+    let sum = 0;
+    xyz.forEach((val) => (sum += val));
+    return sum / xyz.length;
+};
 
 function reloadMarkers() {
     // Loop through markers and set map to null for each
@@ -33,17 +45,34 @@ function reloadMarkers() {
 
     setMarkers(locations);
 
-    markerClusterer = setMarkerCluster(markersAll);
+    let all1 = findAvg(...avgMarkersLat);
 
+    let all2 = findAvg(...avgMarkersLng);
+
+    newMapLoc = {
+        lat: all1,
+        lng: all2,
+    };
+
+    map.setCenter(newMapLoc);
+
+    // console.log(newMapLoc);
+
+    markerClusterer = setMarkerCluster(markersAll);
 }
 
 // Loop for each marker in locations array
 const setMarkers = (markers) => {
+    console.clear();
+    avgMarkersLat.splice(0);
+    avgMarkersLng.splice(0);
+
     markers.map((location, i) => {
         const marker = new google.maps.Marker({
             position: location,
             animation: google.maps.Animation.DROP,
-            label: `${i+1}`,
+            label: `${i + 1}`,
+            title: `Hello world ${i + 1}`,
         });
 
         // on click animate marker
@@ -58,6 +87,12 @@ const setMarkers = (markers) => {
             }
         }
 
+        const lat = marker.getPosition().lat();
+        const lng = marker.getPosition().lng();
+
+        avgMarkersLat.push(lat);
+        avgMarkersLng.push(lng);
+
         markersAll.push(marker);
     });
 };
@@ -71,20 +106,20 @@ const setMarkerCluster = (markers) => {
 };
 
 function initMap() {
+
     const brt = {
         lat: 26.56391,
         lng: 87.154312,
     };
-
+    
     // Initate first marker on map with zoom
     map = new google.maps.Map(document.getElementById("gmap"), {
         center: brt,
-        zoom: 7,
+        zoom: 5,
     });
 
     // Initiate marker cluster on map
     const marker = new google.maps.Marker({
-        position: brt,
         map: map,
         draggable: true,
         animation: google.maps.Animation.DROP,
@@ -106,10 +141,22 @@ function initMap() {
 
     setMarkers(locations);
 
+    let all1 = findAvg(...avgMarkersLat);
+
+    let all2 = findAvg(...avgMarkersLng);
+
+    newMapLoc = {
+        lat: all1,
+        lng: all2,
+    };
+
+    console.log(newMapLoc);
+
+    map.setCenter(newMapLoc);
+
     markerClusterer = setMarkerCluster(markersAll);
 
     // console.log(markerClusterer);
-
 }
 
 const list = document.querySelectorAll("ul li.list");
