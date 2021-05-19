@@ -2,6 +2,8 @@ let map;
 let markerClusterer = null;
 let newMapLoc;
 let infowindow;
+let lastClickedFilter = null;
+console.log("The last clicked Filter was " + lastClickedFilter);
 
 /* Locations markers on the map pulled from div's in DOM. Format : { lat : number, lng : number} */
 const locations = [];
@@ -65,7 +67,6 @@ function reloadMarkers() {
 
 // Loop for each marker in locations array
 const setMarkers = (markers) => {
-    console.clear();
     avgMarkersLat.splice(0);
     avgMarkersLng.splice(0);
 
@@ -107,7 +108,6 @@ const setMarkers = (markers) => {
         });
 
         marker.addListener("click", () => {
-
             if (infowindow) {
                 infowindow.close();
             }
@@ -117,7 +117,6 @@ const setMarkers = (markers) => {
 
             infowindow.open(map, marker);
         });
-
 
         //function to animate marker
         function toggleBounce() {
@@ -147,12 +146,11 @@ const setMarkerCluster = (markers) => {
 };
 
 function initMap() {
-
     const brt = {
         lat: 26.56391,
         lng: 87.154312,
     };
-    
+
     // Initate first marker on map with zoom
     map = new google.maps.Map(document.getElementById("gmap"), {
         center: brt,
@@ -166,7 +164,6 @@ function initMap() {
         animation: google.maps.Animation.DROP,
     });
 
-    
     // on click animate marker
     marker.addListener("click", toggleBounce);
 
@@ -190,14 +187,13 @@ function initMap() {
     newMapLoc = {
         lat: all1,
         lng: all2,
-        zoom: 2
+        zoom: 2,
     };
 
     // console.log(newMapLoc);
 
     map.setCenter(newMapLoc);
     map.setZoom(2);
-
 
     markerClusterer = setMarkerCluster(markersAll);
 
@@ -207,7 +203,7 @@ function initMap() {
 const list = document.querySelectorAll("ul li.list");
 const loading4 = document.querySelector("#loader");
 
-const aR = (id) => {
+const aR = (id = lastClickedFilter, page = 1) => {
     const allCards = document.querySelector("#cardsall");
     const xhr = new XMLHttpRequest();
 
@@ -228,6 +224,7 @@ const aR = (id) => {
     }
 
     xhr.responseType = "document";
+    const mainContainer = document.querySelector(`#pagination`);
 
     if (!id) {
         xhr.open("GET", `ajax.html`, true);
@@ -235,9 +232,46 @@ const aR = (id) => {
             const allHTML = this.responseXML;
             // console.log(allHTML.querySelectorAll(`[data-modifier]`));
             const cardsall = allHTML.querySelectorAll(`[data-modifier]`);
-            cardsall.forEach((val1) => {
+            const NumberOfPages = Math.ceil(cardsall.length / 10);
+
+            if (cardsall.length >= 10) {
+                console.log("The number of pages is " + NumberOfPages);
+                mainContainer.innerHTML = "";
+
+                for (let i = 0; i < NumberOfPages; i++) {
+                    const createPagination = document.createElement("a");
+                    createPagination.innerText = i + 1;
+                    if (page == (i + 1)) {
+                    createPagination.classList.add(`page-active`);
+                    }
+                    createPagination.classList.add(`page-${i + 1}`);
+                    createPagination.setAttribute("data-pageid", i + 1);
+                    mainContainer.append(createPagination);
+                }
+            }
+
+            paginationAll = document.querySelectorAll('[class^="page"]');
+            paginationAll.forEach((val) => {
+                val.addEventListener("click", (clickw) => {
+                    const idOfpage = clickw.target.dataset.pageid;
+                    console.log(idOfpage);
+                    aR(lastClickedFilter, idOfpage);
+                });
+            });
+
+            const from = (page - 1) * 10;
+            const to = 10;
+
+            const pagedCards = [...cardsall];
+
+            const pagedCardsFiltered = pagedCards.splice(from, to);
+
+            console.log(pagedCards.splice(from, to));
+
+            pagedCardsFiltered.forEach((val1, i) => {
                 allCards.innerHTML += val1.outerHTML;
             });
+
             locations.splice(0);
             let cards1 = document.querySelectorAll(".card");
             cards1.forEach((val, index) => {
@@ -259,8 +293,48 @@ const aR = (id) => {
             const cardsall = allHTML.querySelectorAll(
                 `[data-modifier="${id}"]`
             );
-            cardsall.forEach((val1) => {
+
+            const NumberOfPages = Math.ceil(cardsall.length / 10);
+
+            if (cardsall.length >= 10) {
+                console.log("The number of pages is " + NumberOfPages);
+
+                mainContainer.innerHTML = "";
+
+                for (let i = 0; i < NumberOfPages; i++) {
+                    const createPagination = document.createElement("a");
+                    createPagination.innerText = i + 1;
+                    if (page == (i + 1)) {
+                        createPagination.classList.add(`page-active`);
+                    }
+                    createPagination.classList.add(`page-${i + 1}`);
+                    createPagination.setAttribute("data-pageid", i + 1);
+                    mainContainer.append(createPagination);
+                }
+            }
+
+            paginationAll = document.querySelectorAll('[class^="page"]');
+            paginationAll.forEach((val) => {
+                val.addEventListener("click", (clickw) => {
+                    const idOfpage = clickw.target.dataset.pageid;
+                    console.log(idOfpage);
+                    aR(lastClickedFilter, idOfpage);
+                });
+            });
+
+            const from = (page - 1) * 10;
+            const to = 10;
+
+            const pagedCards = [...cardsall];
+
+            const pagedCardsFiltered = pagedCards.splice(from, to);
+
+            console.log(pagedCards.splice(from, to));
+
+            pagedCardsFiltered.forEach((val1, i) => {
                 allCards.innerHTML += val1.outerHTML;
+
+                // allCards.innerHTML += val1.outerHTML;
             });
             locations.splice(0);
             let cards1 = document.querySelectorAll(".card");
@@ -285,13 +359,28 @@ const aR = (id) => {
 list.forEach((tal) => {
     tal.addEventListener("click", (val) => {
         const dataId = Number(val.target.dataset.id);
-
+        lastClickedFilter = dataId;
+        console.log("The last clicked Filter was " + lastClickedFilter);
         aR(dataId);
     });
 });
 
+// let paginationAll = document.querySelectorAll('[class^="page"]');
+// paginationAll.forEach((val) => {
+//     val.addEventListener("click", (clickw) => {
+//         const idOfpage = clickw.target.dataset.pageid;
+//         console.log(idOfpage);
+//         aR(lastClickedFilter, idOfpage);
+//         clickw.target.classList.add("page-active");
+//     });
+// });
+
 const reset = document.querySelector("[data-id='reset']");
 
 reset.addEventListener("click", () => {
+    lastClickedFilter = null;
+    console.log("The last clicked Filter was " + lastClickedFilter);
     aR();
 });
+
+// console.clear();
