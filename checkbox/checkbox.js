@@ -12,6 +12,7 @@ function handleEvent(e) {
         let loop = [lastOne, currentChecked];
 
         loop = loop.sort();
+        
         // console.log(loop.sort());
 
         const secondLast = document.querySelector(`#item${loop[1] - 1}`);
@@ -21,7 +22,8 @@ function handleEvent(e) {
                 const element = document.querySelector(`#item${i}`);
 
                 element.checked = true;
-                console.dir(element.labels[0].innerText);
+
+                // console.dir(element.labels[0].innerText);
             }
         } else {
             console.clear();
@@ -30,7 +32,7 @@ function handleEvent(e) {
 
                 element.checked = false;
 
-                console.dir(element.labels[0].innerText);
+                // console.dir(element.labels[0].innerText);
             }
         }
     }
