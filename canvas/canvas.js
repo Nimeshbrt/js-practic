@@ -69,4 +69,4 @@ canvas.addEventListener("mouseout", () => (isDrawing = false));
 
 setInterval(() => {
     canvas.width = canvas.width;
-}, 10000);
+}, 100000);
