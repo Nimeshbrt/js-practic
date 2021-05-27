@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="customvideo.css" />
+        <script defer src="customvideo.js"></script>
+        <title>Custom Video Player</title>
+    </head>
+    <body>
+        <div id="container">
+            <div id="video-container">
+                <video poster="poster.jpg">
+                    <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+                </video>
+                <!-- Play icon -->
+                <div id="play-icon" class="">
+                    <img src="play.png" alt="">
+                </div>
+                <!-- Custom controls of Video -->
+                <div id="controls">
+                    <img class="sound" src="sound.png" alt="">
+                    <input type="range" name="sound" id="sound" max="100">
+                    <img class="skipf" src="skip.png" alt="">
+                    <img class="skipb" src="skip.png" alt="">
+                    <progress id="progress" max="100" value="0"></progress>
+                    <progress id="progressonhover" max="100" value="0" style="display: none;"></progress>
+                    <div class="playpause"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
