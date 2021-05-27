@@ -1,0 +1,115 @@
+:root {
+    --blur: 10px;
+    --blue: #1e90ff;
+    --p: 10px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0;
+    gap: 15px;
+    min-height: 300px;
+}
+
+#cardsall {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.card {
+    flex-basis: 250px !important;
+    transition: flex .2s ease-in 0s;
+    flex: 1;
+    cursor: pointer;
+}
+
+
+.card:hover {
+    flex: 3;
+    transition: flex .2s ease-in 0s;
+}
+
+.card img {
+    width: 100%;
+    transition: width .2s ease-in 0s;
+        /* height: calc(100% - 30px); */
+    object-fit: cover;
+    height: 300px;
+
+}
+
+#gmap {
+  flex-basis: 100%;
+}
+
+#filter{
+    flex-basis: 20%;
+}
+
+li{
+    cursor: pointer;
+    padding: 5px 0;
+}
+
+.d-none{
+    display: none;
+}
+
+[class*=classic]:before {
+  content:"Loading...";
+}
+
+
+.classic-4 {
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 30px;
+  clip-path: inset(0 3ch 0 0);
+  animation:c4 1s steps(4) infinite;
+}
+@keyframes c4 {to{clip-path: inset(0 -1ch 0 0)}}
+
+
+#pagination{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 50px 0;
+    min-height: 50px;
+    align-items: center;
+}
+
+[class^="page"] {
+    box-sizing: border-box;
+    padding: 10px 20px;    
+    color: black;
+    /* background: transparent; */
+    border: solid 1px black;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.page-active {
+    box-sizing: border-box;
+    padding: 10px 20px;    
+    color: white !important;
+    background: var(--blue);
+    border: none;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
