@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Coin Average Calculator</title>
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .form {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 70vh;
+                flex-wrap: wrap;
+            }
+            #shib,
+            #price {
+                display: flex;
+                flex-wrap: wrap;
+                flex-basis: 200px;
+                gap: 10px;
+                padding: 50px;
+            }
+            #result {
+                width: 100%;
+                text-align: center;
+                padding-top: 30px;
+                font-size: 30px;
+                position: absolute;
+                height: 100vh;
+                display: none;
+                justify-content: center;
+                gap: 5px;
+                align-items: center;
+                background: white;
+                opacity: 0.9;
+                transition: opacity 2s;
+            }
+
+            .d-flex {
+                display: flex !important;
+            }
+
+            #result strong {
+                color: green;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="form">
+            <div id="shib">
+                <input
+                    type="num"
+                    class="shib"
+                    value="3376050"
+                    placeholder="Quantity of Coins"
+                />
+                <input
+                    type="num"
+                    class="shib"
+                    value="1935672"
+                    placeholder="Quantity of Coins"
+                />
+                <input
+                    type="num"
+                    class="shib"
+                    value="851157"
+                    placeholder="Quantity of Coins"
+                />
+                <input
+                    type="num"
+                    class="shib"
+                    value="440240"
+                    placeholder="Quantity of Coins"
+                />
+                <input
+                    type="num"
+                    class="shib"
+                    value="1371128"
+                    placeholder="Quantity of Coins"
+                />
+                <input
+                    type="num"
+                    class="shib"
+                    value="1680135"
+                    placeholder="Quantity of Coins"
+                />
+                <input
+                    type="num"
+                    class="shib"
+                    value="1885204"
+                    placeholder="Quantity of Coins"
+                />
+                <input
+                    type="num"
+                    class="shib"
+                    value=""
+                    placeholder="Quantity of Coins"
+                />
+                <input
+                    type="num"
+                    class="shib"
+                    value=""
+                    placeholder="Quantity of Coins"
+                />
+                <input
+                    type="num"
+                    class="shib"
+                    value=""
+                    placeholder="Quantity of Coins"
+                />
+            </div>
+            <div id="price">
+                <input
+                    type="num"
+                    class="price"
+                    value="0.00000871"
+                    placeholder="Price of Coins"
+                />
+                <input
+                    type="num"
+                    class="price"
+                    value="0.00002531"
+                    placeholder="Price of Coins"
+                />
+                <input
+                    type="num"
+                    class="price"
+                    value="0.00002789"
+                    placeholder="Price of Coins"
+                />
+                <input
+                    type="num"
+                    class="price"
+                    value="0.00002204"
+                    placeholder="Price of Coins"
+                />
+                <input
+                    type="num"
+                    class="price"
+                    value="0.00000929"
+                    placeholder="Price of Coins"
+                />
+                <input
+                    type="num"
+                    class="price"
+                    value="0.00000763"
+                    placeholder="Price of Coins"
+                />
+                <input
+                    type="num"
+                    class="price"
+                    value="0.00001618"
+                    placeholder="Price of Coins"
+                />
+                <input
+                    type="num"
+                    class="price"
+                    value=""
+                    placeholder="Price of Coins"
+                />
+                <input
+                    type="num"
+                    class="price"
+                    value=""
+                    placeholder="Price of Coins"
+                />
+                <input
+                    type="num"
+                    class="price"
+                    value=""
+                    placeholder="Price of Coins"
+                />
+            </div>
+        </div>
+        <button class="button">Submit</button>
+        <div id="result"></div>
+        <script>
+            const button = document.querySelector(".button");
+            const result = document.querySelector("#result");
+
+            console.log(button);
+
+            button.addEventListener("click", () => {
+                const listofshib = [];
+                const listofprice = [];
+
+                const shib = document.querySelectorAll("#shib .shib");
+                const price = document.querySelectorAll("#price .price");
+
+                shib.forEach((val, i) => {
+                    listofshib.push(
+                        Number(val.value /* .replace(/\D/gm, "") */)
+                    );
+                });
+
+                price.forEach((val, i) => {
+                    listofprice.push(
+                        Number(val.value /* .replace(/\D/gm, "") */)
+                    );
+                });
+
+                const listshib = listofshib.reduce((a, b) => {
+                    return a + b;
+                }, 0);
+
+                const totalab = listofshib.map((v, i) => v * listofprice[i]);
+
+                const finaltotalab = totalab.reduce((a, b) => a + b, 0);
+
+                console.log(finaltotalab / listshib);
+
+                result.classList.add('d-flex');
+
+                result.innerHTML =
+                    "The Average is  <strong> " +
+                    (finaltotalab / listshib).toFixed(8) +
+                    " </strong>";
+
+                result.addEventListener("mouseover", () => { setTimeout(() => {
+                    result.classList.remove('d-flex');
+                }, 5000)});
+
+                });
+        </script>
+    </body>
+</html>
