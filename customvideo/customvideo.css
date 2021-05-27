@@ -65,6 +65,8 @@ progress {
     display: flex;
     justify-content: space-between;
     position: absolute;
+    height: 40px;
+    background: #00000085;
     bottom: 0px;
     opacity: 0;
     transition: opacity 500ms ease-in-out 25ms;
@@ -219,12 +221,12 @@ input[type="range"]:focus::-ms-fill-upper {
 }
 
 video::-webkit-media-controls {
-  display:none !important;
+    display: none !important;
 }
 video::-webkit-media-controls-enclosure {
-  display:none !important;
+    display: none !important;
 }
 
-#controls{
-  z-index: 2147483647;
+#controls {
+    z-index: 2147483647;
 }
