@@ -169,6 +169,10 @@ video:hover~#controls,
     opacity: 1 !important;
 }
 
+.d-none {
+    display: none !important;
+}
+
 /* Styles for Progress Bar in different browsers*/
 progress {
     color: #ffc600;
@@ -193,10 +197,7 @@ progress::-webkit-progress-bar {
     background: black;
 }
 
-.d-none {
-    display: none !important;
-}
-
+/* Style for volume Slider */
 input[type="range"] {
     -webkit-appearance: none;
     -moz-appearance: none;
