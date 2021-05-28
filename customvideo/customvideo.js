@@ -1,11 +1,12 @@
-console.log("loaded");
-
 const container = document.querySelector("#video-container");
+const controls = document.querySelector("#controls");
 const video = document.querySelector("video");
 const progress = document.querySelector("progress");
 const progressonhover = document.querySelector("#progressonhover");
 const playIcon = document.querySelector("#play-icon");
-const sound = document.querySelector("#sound");
+const soundslider = document.querySelector("#sound-slider");
+const soundIcon = document.querySelector(".sound");
+const muteIcon = document.querySelector(".mute");
 const skipVideoForward = document.querySelector(".skipf");
 const skipVideoBackwards = document.querySelector(".skipb");
 
@@ -16,19 +17,24 @@ function togglePlay() {
 
     if (video.paused) {
         playIcon.classList.remove("d-none");
+        controls.classList.add("opacity");
     } else {
         playIcon.classList.add("d-none");
+        controls.classList.remove("opacity");
     }
-
-    // console.log(state);
 }
 
-function soundSlider() {
+function soundF() {
     if (video.volume <= 1 && video.volume >= 0) {
         video.muted = false;
-        video.volume = sound.value / 100;
-        // console.log(sound.value);
-        // sound.value = (video.volume).toFixed(2) * 100;
+        video.volume = soundslider.value / 100;
+        if (video.volume == 0) {
+            soundIcon.style.display = "none";
+            muteIcon.style.display = "block";
+        } else {
+            soundIcon.style.display = "block";
+            muteIcon.style.display = "none";
+        }
     }
 }
 
@@ -54,15 +60,29 @@ function skip(e) {
     if (e.key == "ArrowUp") {
         if (video.volume <= 1 && video.volume >= 0) {
             video.muted = false;
-            video.volume += 0.05;
-            sound.value = video.volume.toFixed(2) * 100;
+            if (video.volume == 1) {
+                soundslider.value = 100;
+                return;
+            }
+            const volumenew = (video.volume + 0.05).toFixed(2);
+            video.volume = volumenew;
+            soundslider.value = video.volume.toFixed(2) * 100;
+            soundIcon.style.display = "block";
+            muteIcon.style.display = "none";
         }
     }
     if (e.key == "ArrowDown") {
         if (video.volume <= 1 && video.volume >= 0) {
             video.muted = false;
-            video.volume -= 0.05;
-            sound.value = video.volume.toFixed(2) * 100;
+            if (video.volume == 0) {
+                soundslider.value = 0;
+                soundIcon.style.display = "none";
+                muteIcon.style.display = "block";
+                return;
+            }
+            const volumenew = (video.volume - 0.05).toFixed(2);
+            video.volume = volumenew;
+            soundslider.value = video.volume.toFixed(2) * 100;
         }
     }
     if (e.code == "Space") {
@@ -70,9 +90,18 @@ function skip(e) {
     }
     if (e.key == "m") {
         video.muted = !video.muted;
+        if (video.muted) {
+            soundslider.value = 0;
+            soundIcon.style.display = "none";
+            muteIcon.style.display = "block";
+        } else {
+            soundslider.value = video.volume.toFixed(2) * 100;
+            soundIcon.style.display = "block";
+            muteIcon.style.display = "none";
+        }
     }
     if (e.key == "f") {
-       openFullscreen();
+        openFullscreen();
     }
     if (e.key == "+") {
         video.playbackRate += 0.25;
@@ -80,17 +109,10 @@ function skip(e) {
     if (e.key == "-") {
         video.playbackRate -= 0.25;
     }
-
-    // (e.key == "ArrowLeft") ? console.log(e) : console.log(false);
-    // (e.key == "ArrowRight") ? console.log(e) : console.log(false);
 }
-
-video.addEventListener("click", togglePlay);
-playIcon.addEventListener("click", togglePlay);
 
 video.addEventListener("timeupdate", () => {
     progress.value = ((video.currentTime / video.duration) * 100).toFixed(2);
-    // console.log("new time");
 });
 
 progress.addEventListener("drag", (e) => {
@@ -138,11 +160,30 @@ progress.addEventListener("click", (e) => {
 progressonhover.addEventListener("click", (e) => {
     progress.value = ((e.offsetX / e.target.offsetWidth) * 100).toFixed(2);
     video.currentTime = (progress.value / 100) * video.duration;
-    // togglePlay();
 });
 
+video.addEventListener("click", togglePlay);
+playIcon.addEventListener("click", togglePlay);
+
 document.addEventListener("keydown", skip);
-sound.addEventListener("input", soundSlider);
-window.addEventListener("load", () => (sound.value = 100));
-skipVideoForward.addEventListener("click", () => video.currentTime += 30);
-skipVideoBackwards.addEventListener("click", () => video.currentTime -= 30);
+soundslider.addEventListener("input", soundF);
+
+skipVideoForward.addEventListener("click", () => (video.currentTime += 30));
+skipVideoBackwards.addEventListener("click", () => (video.currentTime -= 30));
+
+window.addEventListener("load", () => {
+    if (video.paused) {
+        controls.classList.add("opacity");
+    } else {
+        controls.classList.remove("opacity");
+    }
+    if (video.muted) {
+        soundslider.value = 0;
+        muteIcon.style.display = "block";
+        soundIcon.style.display = "none";
+    } else {
+        soundslider.value = 100;
+        muteIcon.style.display = "none";
+        soundIcon.style.display = "block";
+    }
+});

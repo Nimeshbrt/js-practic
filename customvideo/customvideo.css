@@ -9,6 +9,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Poppins';
 }
 
 #container {
@@ -18,6 +19,7 @@ body {
     align-items: center;
     width: 100%;
     height: 100vh;
+    flex-wrap: wrap;
 }
 
 #video-container {
@@ -72,7 +74,7 @@ progress {
     transition: opacity 500ms ease-in-out 25ms;
 }
 
-#sound {
+#sound-slider {
     bottom: 15.5px;
     left: 40px;
     position: absolute;
@@ -80,6 +82,39 @@ progress {
 }
 
 #controls .sound {
+    position: absolute;
+    bottom: 7.5px;
+    left: 10px;
+}
+
+#shortcuts {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+    flex-wrap: wrap;
+}
+
+#shortcuts ul {
+    padding: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    list-style: none;
+    font-size: 14px;
+    font-weight: 400;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+@media (max-width: 767px) {
+    ul li{
+        flex-basis: 100%;
+        text-align: center;
+    }  
+}
+
+#controls .mute {
     position: absolute;
     bottom: 7.5px;
     left: 10px;
@@ -110,6 +145,11 @@ video:hover ~ #controls,
     opacity: 1;
 }
 
+.opacity {
+    opacity: 1 !important;
+}
+
+/* Styles for Progress Bar in different browsers*/
 progress {
     color: #ffc600;
 }
@@ -167,7 +207,6 @@ input[type="range"]::-moz-range-track {
     width: 100%;
     height: 12.8px;
     cursor: pointer;
-    animate: 0.2s;
     box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
     background: #ffc600;
 
@@ -186,7 +225,6 @@ input[type="range"]::-ms-track {
     width: 100%;
     height: 12.8px;
     cursor: pointer;
-    animate: 0.2s;
     background: transparent;
     border-color: transparent;
     border-width: 39px 0;
@@ -220,13 +258,13 @@ input[type="range"]:focus::-ms-fill-upper {
     background: #ffc600;
 }
 
+/*  Hide default video controls on fullscreen */
 video::-webkit-media-controls {
     display: none !important;
 }
 video::-webkit-media-controls-enclosure {
     display: none !important;
 }
-
 #controls {
     z-index: 2147483647;
 }
