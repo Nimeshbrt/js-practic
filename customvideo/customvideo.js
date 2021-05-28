@@ -1,6 +1,7 @@
 const container = document.querySelector("#video-container");
 const controls = document.querySelector("#controls");
 const video = document.querySelector("video");
+const time = document.querySelector("#time");
 const progress = document.querySelector("progress");
 const progressonhover = document.querySelector("#progressonhover");
 const playIcon = document.querySelector("#play-icon");
@@ -9,6 +10,14 @@ const soundIcon = document.querySelector(".sound");
 const muteIcon = document.querySelector(".mute");
 const skipVideoForward = document.querySelector(".skipf");
 const skipVideoBackwards = document.querySelector(".skipb");
+
+function addZero(n) {
+    if (n < 10) {
+        return "0" + n;
+    } else {
+        return n;
+    }
+}
 
 function togglePlay() {
     const state = video.paused ? "play" : "pause";
@@ -21,6 +30,20 @@ function togglePlay() {
     } else {
         playIcon.classList.add("d-none");
         controls.classList.remove("opacity");
+    }
+}
+
+function toggleMute() {
+    if (video.muted) {
+        video.muted = !video.muted;
+        soundslider.value = video.volume.toFixed(2) * 100;
+        soundIcon.style.display = "block";
+        muteIcon.style.display = "none";
+    } else {
+        video.muted = !video.muted;
+        soundslider.value = 0;
+        soundIcon.style.display = "none";
+        muteIcon.style.display = "block";
     }
 }
 
@@ -164,9 +187,39 @@ progressonhover.addEventListener("click", (e) => {
 
 video.addEventListener("click", togglePlay);
 playIcon.addEventListener("click", togglePlay);
+muteIcon.addEventListener("click", toggleMute);
+soundIcon.addEventListener("click", toggleMute);
 
 document.addEventListener("keydown", skip);
 soundslider.addEventListener("input", soundF);
+
+video.addEventListener(
+    "loadeddata",
+    () =>
+    (time.innerHTML = `${
+            Math.floor(video.currentTime / 60) +
+            ":" +
+            addZero(Math.round(video.currentTime % 60))
+        } / ${
+            Math.floor(video.duration / 60) +
+            ":" +
+            addZero(Math.round(video.duration % 60))
+        }`)
+);
+
+video.addEventListener(
+    "timeupdate",
+    () =>
+    (time.innerHTML = `${
+            Math.floor(video.currentTime / 60) +
+            ":" +
+            addZero(Math.round(video.currentTime % 60))
+        } / ${
+            Math.floor(video.duration / 60) +
+            ":" +
+            addZero(Math.round(video.duration % 60))
+        }`)
+);
 
 skipVideoForward.addEventListener("click", () => (video.currentTime += 30));
 skipVideoBackwards.addEventListener("click", () => (video.currentTime -= 30));
