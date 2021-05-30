@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Temp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+        integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./print.css" media="print">
+    <script defer src="card.js"></script>
+</head>
+
+<body>
+
+    <div id="print" class="row container">
+        <div class="row card-front">
+            <div class="row left-bg">
+                <div class="card-logo">
+                    <img class="logo" src="./Vector.png" alt="">
+                    <h3 class="card-company">MUTECODER</h3>
+                </div>
+            </div>
+            <div class="right-bg">
+                <div class="card-details">
+                    <div class="row name--designation">
+                        <h1 id="name">Zakir Raza</h1>
+                        <p id="designation">Project Manager</p>
+                    </div>
+                    <div class="owner--details">
+                        <div class="row icon"><i class="fas fa-phone-alt"></i>
+                            <p id="phone">+977-9842163489</p>
+                        </div>
+                        <div class="row icon"><i class="fas fa-envelope"></i>
+                            <p id="email">mutecoder@gmail.com</p>
+                        </div>
+                        <div class="row icon"><i class="fas fa-map-marker-alt"></i>
+                            <p id="location">1990 Davis Place, Toledo, OH</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row card-back">
+            <div class="card-logo">
+                <img class="logo" src="./Vector.png" alt="">
+                <h3 class="card-company">MUTECODER</h3>
+            </div>
+        </div>
+
+    </div>
+    <div id="inputs">
+        <div>
+            <label style="margin-right:0.5em;" for="inputName">Name: </label>
+            <input type="text" id="inputName" name="inputName" value="Zakir Raza">
+        </div>
+        <div>
+            <label style="margin-right:0.5em;" for="inputDes">Designation: </label>
+            <input type="text" id="inputDes" name="inputDes">
+        </div>
+        <div>
+            <label style="margin-right:0.5em;" for="inputPhone">Phone: </label>
+            <input type="tel" id="inputPhone" name="inputPhone">
+        </div>
+        <div>
+            <label style="margin-right:0.5em;" for="inputEmail">Email: </label>
+            <input type="email" id="inputEmail" name="inputEmail">
+        </div>
+        <div>
+            <label style="margin-right:0.5em;" for="inputAdd">Address: </label>
+            <input type="text" id="inputAdd" name="inputAdd">
+        </div>
+        <div>
+            <label style="margin-right:0.5em;" for="inputLogo">Logo: </label>
+            <input type="file" id="inputLogo" name="inputLogo">
+        </div>
+        <div>
+            <label style="margin-right:0.5em;" for="inputCompany">Company Name: </label>
+            <input type="text" id="inputCompany" name="inputCompany">
+        </div>
+        <div>
+            <label style="margin-right:0.5em;" for="inputFcolor">Front Color:</label>
+            <input type="text" id="inputFcolor" name="inputFcolor">
+        </div>
+        <div>
+            <label style="margin-right:0.5em;" for="inputBcolor">Back color: </label>
+            <input type="text" id="inputBcolor" name="inputBcolor">
+        </div>
+        <div>
+            <button id="button">Print</button>
+        </div>
+    </div>
+</body>
+
+</html>

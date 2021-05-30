@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+@page { size: auto;  margin: 0mm; }
+
+@media print {
+
+body {
+    margin: 40px 0 0 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    max-width: 60%;
+    margin: 20px auto;
+    padding-top: 3em;
+    flex-direction: column;
+    gap: 2em;
+    justify-content: center;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+}
+
+.card-front {
+    width: 336px;
+    height: 192px;
+    margin: 0 auto;
+}
+
+.card-front :is(h1, h3, p) {
+    margin: 0;
+}
+
+.left-bg {
+    width: 136px;
+    height: 192px;
+    background: #7947F7;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-logo {
+    display: grid;
+    justify-items: center;
+    grid-gap: 0.15em;
+}
+
+.card-logo img {
+    width: 61px;
+    height: 61px;
+    max-width: 100%;
+    background-color: #fff;
+    padding: 0.7em 0.5em;
+    border-radius: 4px;
+}
+
+.card-logo h3 {
+    font-weight: 700;
+    font-size: 10px;
+    color: #F2F2F2;
+}
+
+.right-bg {
+    background: #F8FBFF;
+    width: 200px;
+    padding: 1.875em 1.44em 1.875em 0;
+}
+
+.card-details {
+    display: grid;
+    grid-gap: 1.4em;
+    border: 2px solid #7947F7;
+    border-left: 0;
+    padding: 0.65em 0.5em;
+
+}
+
+.name--designation {
+    flex-direction: column;
+}
+
+.name--designation h1 {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.name--designation p {
+    font-weight: 400;
+    font-size: 9px;
+}
+
+.owner--details {
+    display: grid;
+}
+
+.owner--details i {
+    width: 13px;
+    font-size: 8px;
+    color: #7947F7;
+}
+
+.owner--details p {
+    font-weight: 400;
+    font-size: 8px;
+}
+
+.icon {
+    align-items: center;
+}
+
+/* Card Back */
+
+
+.card-back {
+    width: 336px;
+    height: 192px;
+    background: #7947F7;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.card-back h3 {
+    margin: 0;
+}
+
+#inputs {
+    display: none;
+}
+
+}
+
+@media print {
+body {-webkit-print-color-adjust: exact;}
+}
+
+/* style sheet for "A4" printing */
+ @media print and (width: 21cm) and (height: 29.7cm) {
+    @page {
+       margin: 3cm;
+    }
+ }
+ /* style sheet for "letter" printing */
+ @media print and (width: 8.5in) and (height: 11in) {
+    @page {
+        margin: 1in;
+    }
+ }
