@@ -12,10 +12,11 @@ body {
 }
 
 .container {
+    display: grid;
+    justify-content: center;
     max-width: 60%;
     margin: 0 auto;
     padding-top: 3em;
-    flex-direction: column;
     gap: 2em;
 }
 
@@ -24,10 +25,9 @@ body {
 }
 
 .card-front {
+    align-items: center;
     width: 336px;
     height: 192px;
-    margin: 0 auto;
-    align-items: center;
 }
 
 .card-front :is(h1, h3, p) {
@@ -66,12 +66,14 @@ body {
 .right-bg {
     background: #F8FBFF;
     width: 200px;
-    padding: 1.875em 1.44em 1.875em 0;
+    height: 192px;
+    align-items: center;
 }
 
 .card-details {
     display: grid;
     grid-gap: 1.4em;
+    width: 177px;
     border: 2px solid #7947F7;
     border-left: 0;
     padding: 0.65em 0.5em;
@@ -119,7 +121,6 @@ body {
     background: #7947F7;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
 }
 
 .card-back h3 {
