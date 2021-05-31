@@ -27,6 +27,7 @@ body {
     width: 336px;
     height: 192px;
     margin: 0 auto;
+    align-items: center;
 }
 
 .card-front :is(h1, h3, p) {
