@@ -1,5 +1,3 @@
-console.log("hello");
-
 const header = document.querySelector('#header');
 
 let lastpos = header.clientHeight * 3;

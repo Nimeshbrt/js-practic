@@ -1,8 +1,5 @@
-console.log("loaded");
-
 const body = document.querySelector('body');
 const section = document.querySelectorAll('section');
-
 
 window.addEventListener("scroll", () => {
    section.forEach((val) => {
@@ -15,11 +12,11 @@ window.addEventListener("scroll", () => {
         }
 
    })
-}) 
+});
+
 window.addEventListener("click", () => {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
     });
-})
-
+});
