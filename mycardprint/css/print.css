@@ -12,6 +12,8 @@
 @media print {
 
 body {
+    -webkit-print-color-adjust: exact; /*chrome & webkit browsers*/
+    color-adjust: exact; /*firefox & IE */
     margin: 40px 0 0 0;
     font-family: 'Poppins', sans-serif;
 }
