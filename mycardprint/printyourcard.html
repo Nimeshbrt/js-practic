@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY CARD PRINT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+        integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro/dist/iro.min.js"></script>
+    <script src="./js/js.js" defer></script>
+    <script src="./js/card.js" defer></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/print.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="row container nav--body">
+            <!-- Logo -->
+            <a href="./index.html" class="logo">
+                <h1>MYCARDPRINT</h1>
+            </a>
+            <!-- End -->
+            <input type="checkbox" id="nav--toggle" class="nav--toggle">
+            <!-- Navigation -->
+            <nav>
+                <ul class="row">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Category</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Setting</a></li>
+                </ul>
+            </nav>
+            <!-- End -->
+            <label for="nav--toggle" class="nav--toggle-label">
+                <span></span>
+            </label>
+        </div>
+    </header>
+    <!-- Navigation End -->
+
+    <!-- Print Card -->
+    <section class="print-card-bg">
+        <div class="container">
+            <div class="row back--download">
+                <div id="back" class="col-2">
+                    <a href="#" class="row btn"><i class="fas fa-chevron-left"></i>
+                        <p>Back</p>
+                    </a>
+                </div>
+                <div id="download" class="col-2">
+                    <a href="#" class="row btn">
+                        <p>Download PDF</p><i class="fas fa-cloud-download-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card Shape -->
+            <div id="print" class="row front-back-cards">
+                <div class="row card-front">
+                    <div class="row left-bg">
+                        <div class="card-logo">
+                            <img class="logo" src="./images/Vector.png" alt="">
+                            <h3 class="card-company">MUTECODER</h3>
+                        </div>
+                    </div>
+                    <div class="row right-bg">
+                        <div class="card-details">
+                            <div class="row name--designation">
+                                <h1 id="name">Zakir Raza</h1>
+                                <p id="designation">Project Manager</p>
+                            </div>
+                            <div class="owner--details">
+                                <div class="row icon"><i class="fas fa-phone-alt"></i>
+                                    <p id="phone">+977-9842163489</p>
+                                </div>
+                                <div class="row icon"><i class="fas fa-envelope"></i>
+                                    <p id="email">mutecoder@gmail.com</p>
+                                </div>
+                                <div class="row icon"><i class="fas fa-map-marker-alt"></i>
+                                    <p id="location">1990 Davis Place, Toledo, OH</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row card-back">
+                    <div class="card-logo">
+                        <img class="logo" src="./images/Vector.png" alt="">
+                        <h3 class="card-company">MUTECODER</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- Card Shape End -->
+
+            <!-- Card Inputs -->
+            <div id="inputs" class="column card-input-option">
+                <div class="col-3">
+                    <label>Name</label>
+                    <div class="row">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="inputName" name="inputName" placeholder="Your Name">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <label>Designation</label>
+                    <div class="row">
+                        <i class="fas fa-university"></i>
+                        <input type="text" id="inputDes" name="inputDes" placeholder="Designation">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <label>Email</label>
+                    <div class="row">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="inputEmail" name="inputEmail" placeholder="Email address">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <label>Number</label>
+                    <div class="row">
+                        <i class="fas fa-phone-alt"></i>
+                        <input type="tel" id="inputPhone" name="inputPhone" placeholder="Number">
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <label>Address</label>
+                    <div class="row">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <input type="text" id="inputAdd" name="inputAdd" placeholder="Address">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <label>Company Name</label>
+                    <div class="row">
+                        <i class="fas fa-building"></i>
+                        <input type="text" id="inputCompany" name="inputCompany" placeholder="Company Name">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <label>Upload Logo</label>
+                    <div class="row">
+                        <i class="fas fa-camera"></i>
+                        <input type="file" id="inputLogo" name="inputLogo" placeholder="Upload Logo">
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <label for="inputFcolor">Front Color:</label>
+                    <div class="row color-container" id="front-color">
+                        <i class="fas fa-tint"></i>
+                        <input class="hexInput" type="text" id="inputFcolor" name="inputFcolor">
+                        <div class="color-box">
+                            <div class="colorPicker"></div>
+                            <div>
+                                <span class="title">Selected Color:</span>
+                                <div id="values"></div>
+                                <input id="hexInput"></input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <label for="inputBcolor">Back color: </label>
+                    <div class="row color-container" id="back-color">
+                        <i class="fas fa-paint-roller"></i>
+                        <input class="hexInput2" type="text" id="inputBcolor" name="inputBcolor">
+                        <div class="color-box">
+                            <div id="colorPicker" class="colorPicker"></div>
+                            <div>
+                                <span class="title">Selected Color:</span>
+                                <div id="values2"></div>
+                                <input id="hexInput2"></input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div>
+                    <button id="button">Print</button>
+                </div> -->
+            </div>
+            <!-- Card Inputs end -->
+
+        </div>
+    </section>
+    <!-- Print Card End-->
+
+    <!-- Footer -->
+    <footer>
+        <div class="row container footer--body">
+            <!-- Logo -->
+            <a href="" class="logo">
+                <h1>MYCARDPRINT</h1>
+            </a>
+            <!-- End -->
+            <div>
+                <p>Company</p>
+                <ul class="row">
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Job</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <p>Support</p>
+                <ul class="row">
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">Cookies</a></li>
+                    <li><a href="#">Privacy & terms</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+            </div>
+            <div>
+                <p>Community</p>
+                <ul class="row">
+                    <li><a href="#">Developers</a></li>
+                    <li><a href="#">Designers</a></li>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">UIB</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container since">
+            <hr>
+            <p>© 2020, UI8 LLC.</p>
+        </div>
+    </footer>
+    <!-- Footer End -->
+</body>
+
+</html>
