@@ -1,4 +1,1 @@
-# js-practic
-
-30 js projects
-4 projects Done
+# The folders in projects are all the project related to vanilla javascript
