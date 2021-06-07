@@ -21,7 +21,7 @@ function getDegrees(data) {
     let y = Math.sin(longDiff) * Math.cos(latitude2);
     let x = Math.cos(latitude1) * Math.sin(latitude2) - Math.sin(latitude1) * Math.cos(latitude2) * Math.cos(longDiff);
 
-    return toDegrees(Math.atan2(y, x));
+    return (toDegrees(Math.atan2(y, x)).toFixed(1));
 }
 
 navigator.geolocation.watchPosition((data) => {
