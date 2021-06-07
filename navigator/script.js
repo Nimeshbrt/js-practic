@@ -6,7 +6,7 @@ const cons = document.querySelector('#console');
 
 navigator.geolocation.watchPosition((data) => {
     console.log(data);
-    // cons.innerHTML = ((data.coords.speed) * 3.6).toFixed(2) ;
+    cons.innerHTML = data.coords.heading + "Degree";
     speed.textContent = ((data.coords.speed) * 3.6).toFixed(2);
     arrow.style.transform = `rotate(${data.coords.heading}deg)`;
 }, (err) => {
