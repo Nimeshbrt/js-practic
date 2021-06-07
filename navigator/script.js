@@ -29,7 +29,7 @@ navigator.geolocation.watchPosition((data) => {
     // cons.innerHTML = (data.coords.heading).toFixed(2) + " Degree";
     browserConsole.innerHTML = (data.coords.heading).toFixed(2) + " Degree";
     speed.textContent = ((data.coords.speed) * 3.6).toFixed(2);
-    arrow.style.transform = `rotate(${(data.coords.heading).toFixed(2)}deg)`;
+    arrow.style.transform = `rotate( -${(data.coords.heading).toFixed(2)}deg)`;
     arrow.style.transition = `transform .4s`;
 
     latitude1 = (data.coords.latitude).toFixed(4);
